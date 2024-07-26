@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        $(document).ready(function () {
+            let username = localStorage.getItem("activeuser");
+            if (username) {
+                $("#username").text(`${username}`);
+            }
+        });
+    </script>
+    <style>
+        
+          body {
+            background: linear-gradient(to right, #DAABA5, #f5f5f5);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #333;
+            border-bottom: 2px solid #444;
+        }
+
+        .navbar-brand img {
+            border-radius: 50%;
+        }
+
+        .navbar-nav a {
+            color: #fff !important;
+            margin-left: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            color: #d7f112 !important;
+        }
+
+        .carousel-inner img {
+            border-radius: 15px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control,
+        .form-select {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        .form-control::placeholder,
+        .form-select {
+            color: #ccc;
+        }
+
+        .form-check-input {
+            background-color: #333;
+            border: 1px solid #444;
+        }
+
+        .form-check-label {
+            color: #fff;
+        }
+
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-container input {
+            padding-right: 3rem;
+            /* Adjust the padding to ensure there's enough space for the icon */
+            border-radius: 5px;
+            /* Ensure the input has rounded corners */
+        }
+
+        .password-container i {
+            position: absolute;
+            right: 0.75rem;
+            /* Adjust this value to position the icon inside the input */
+            color: #d7f112;
+            /* Icon color */
+            font-size: 1.2rem;
+            /* Adjust the icon size as needed */
+            cursor: pointer;
+            /* Change cursor to pointer to indicate it's clickable */
+        }
+
+        .modal-footer button {
+            background-color: #d7f112;
+            border-color: #d7f112;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #c0e000;
+            border-color: #c0e000;
+        }
+
+        .footer-nav {
+            background-color: #333;
+            border-top: 2px solid #444;
+        }
+
+        .footer-nav .nav-link {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .footer-nav .nav-link:hover {
+            color: #d7f112;
+        }
+
+        /* Custom icon colors */
+        .icon-email {
+            color: #007bff;
+        }
+
+        .icon-name {
+            color: #28a745;
+        }
+
+        .icon-address {
+            color: #dc3545;
+        }
+
+        .icon-phone {
+            color: #fd7e14;
+        }
+
+        .icon-city {
+            color: #6f42c1;
+        }
+
+        .icon-state {
+            color: #17a2b8;
+        }
+
+        .icon-zip {
+            color: #e83e8c;
+        }
+
+        .icon-gender {
+            color: #ffc107;
+        }
+
+        .icon-insta {
+            color: #c13584;
+        }
+
+        .icon-facebook {
+            color: #4267B2;
+        }
+
+        .icon-youtube {
+            color: #FF0000;
+        }
+
+        .icon-other {
+            color: #6c757d;
+        }
+    </style>
+    <script>
+        var module = angular.module("find", []);
+        module.controller("find", function ($scope, $http) {
+            $scope.findInflu = function (fields) {
+                let url = "/find-influ?fields=" + fields;
+                $http.get(url).then(function (response) {
+                    $scope.jsonArrayInflu = response.data;
+                }, function (err) {
+                    alert(err.message || "An error occurred");
+                });
+            };
+
+            $scope.dofind = function (field, city) {
+                let url = "/do-find?field=" + field + "&city=" + city;
+                $http.get(url).then(function (response) {
+                    $scope.jarraybyfnc = response.data;
+                }, function (err) {
+                    alert(err.message || "An error occurred");
+                });
+            };
+
+            $scope.dofindbyname = function (name) {
+                let url = "/do-findbyname?name=" + name;
+                $http.get(url).then(function (response) {
+                    $scope.jarraybyfnc = response.data;
+                }, function (err) {
+                    alert(err.message || "An error occurred");
+                });
+            };
+
+            $scope.showinfo = function (index) {
+                $scope.fullDetailObj = $scope.jarraybyfnc[index];
+            };
+
+        });
+    </script>
+</head>
+
+<body ng-app="find" ng-controller="find">
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/mypics/lg.jpg" alt="Logo" width="30" height="30" class="me-2">
+                <span class="mb-0 h2">cSpark</span>
+            </a>
+            <div class="d-flex justify-content-center" style="width: 100%;">
+                <span id="username" class="text-white" style="font-weight: bold; font-size: 24px;"></span>
+            </div>
+        </div>
+    </nav>
+    <center>
+        <div class="container">
+            <div class="row">
+                <center>
+                    <div class="col-md-12">
+                        <h3><b>Find Influencer</b></h3>
+                    </div>
+                </center>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="validationCustom04" class="form-label">Fields:</label>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" ng-model="field" required ng-change="findInflu(field);">
+                        <option selected disabled value="">Choose...</option>
+                        <option>Beauty</option>
+                        <option>Fashion</option>
+                        <option>Fitness</option>
+                        <option>Gaming</option>
+                        <option>Technology</option>
+                        <option>Travel</option>
+                        <option>Food</option>
+                        <option>Music</option>
+                        <option>Art</option>
+                        <option>Photography</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-1">
+                    <label for="validationCustom04" class="form-label">City:</label>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" ng-model="city" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option ng-repeat="obj in jsonArrayInflu" value="{{obj.city}}">{{obj.city}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <p>
+                        <input type="button" class="btn btn-dark" ng-click="dofind(field, city);" value="Find Now">
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="validationCustom04" class="form-label">Name:</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" ng-model="name">
+                </div>
+                <div class="col-md-2">
+                    <p>
+                        <input type="button" class="btn btn-dark" ng-click="dofindbyname(name);" value="Find By Name">
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <h2>Influencers</h2>
+                    </center>
+                </div>
+                <div class="col-md-3" ng-repeat="obj in jarraybyfnc">
+                    <div class="card mt-5">
+                        <center>
+                            <img ng-src="myuploads/{{obj.ppic}}" alt="..." height="40%" width="40%">
+                        </center>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-user card-icon icon-name"></i> Name : {{obj.name}}
+                            </h5>
+                            <h5 class="card-title">
+                                <i class="fas fa-genderless card-icon icon-gender"></i> Gender : {{obj.gender}}
+                            </h5>
+                            <h5 class="card-title" ng-if="obj.insta">
+                                <i class="fab fa-instagram card-icon icon-insta"></i> Instagram ID : {{obj.insta}}
+                            </h5>
+                            <h5 class="card-title">
+                                <i class="fas fa-city card-icon icon-city"></i> City : {{obj.city}}
+                            </h5>
+                            <center>
+                                <input type="button" data-bs-toggle="modal" data-bs-target="#modalDetails"
+                                    class="btn btn-dark" ng-click="showinfo($index);" value="More Details">
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">More Info</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="left-side">
+                            <p><img ng-src="myuploads/{{fullDetailObj.ppic}}" alt="Profile Picture"></p>
+                            <p ng-if="fullDetailObj.email"><i class="fas fa-envelope info-icon icon-email"></i>Email :
+                                {{fullDetailObj.email}}</p><br>
+                            <p ng-if="fullDetailObj.name"><i class="fas fa-user info-icon icon-name"></i>Name :
+                                {{fullDetailObj.name}}</p><br>
+                            <p ng-if="fullDetailObj.address"><i class="fas fa-home info-icon icon-address"></i>Address :
+                                {{fullDetailObj.address}}</p><br>
+                            <p ng-if="fullDetailObj.number"><i class="fas fa-phone info-icon icon-phone"></i>Contact
+                                Number : {{fullDetailObj.number}}</p><br>
+                            <p ng-if="fullDetailObj.city"><i class="fas fa-city info-icon icon-city"></i>City :
+                                {{fullDetailObj.city}}</p><br>
+                            <p ng-if="fullDetailObj.state"><i
+                                    class="fas fa-map-marker-alt info-icon icon-state"></i>State :
+                                {{fullDetailObj.state}}</p><br>
+                            <p ng-if="fullDetailObj.zip"><i class="fas fa-cogs info-icon icon-zip"></i>Zip :
+                                {{fullDetailObj.zip}}</p><br>
+                            <p ng-if="fullDetailObj.gender"><i
+                                    class="fas fa-genderless info-icon icon-gender"></i>Gender :
+                                {{fullDetailObj.gender}}</p><br>
+                        </div>
+                        <div class="right-side">
+                            <p ng-if="fullDetailObj.insta"><i
+                                    class="fab fa-instagram info-icon icon-insta"></i>Instagram ID :
+                                {{fullDetailObj.insta}}</p><br>
+                            <p ng-if="fullDetailObj.facebook"><i
+                                    class="fab fa-facebook info-icon icon-facebook"></i>Facebook ID :
+                                {{fullDetailObj.facebook}}</p><br>
+                            <p ng-if="fullDetailObj.youtube"><i
+                                    class="fab fa-youtube info-icon icon-youtube"></i>YouTube Channel :
+                                {{fullDetailObj.youtube}}</p><br>
+                            <p ng-if="fullDetailObj.other"><i class="fas fa-info info-icon icon-other"></i>Other Info :
+                                {{fullDetailObj.other}}</p><br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>

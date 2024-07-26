@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>cSpark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #DAABA5, #f5f5f5);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #333;
+            border-bottom: 2px solid #444;
+        }
+
+        .navbar-brand img {
+            border-radius: 50%;
+        }
+
+        .navbar-nav a {
+            color: #fff !important;
+            margin-left: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            color: #d7f112 !important;
+        }
+
+        .carousel-inner img {
+            border-radius: 15px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control, .form-select {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        .form-control::placeholder, .form-select {
+            color: #ccc;
+        }
+
+        .form-check-input {
+            background-color: #333;
+            border: 1px solid #444;
+        }
+
+        .form-check-label {
+            color: #fff;
+        }
+
+        .password-container input {
+            padding-right: 3rem;
+        }
+
+        .password-container i {
+            right: 1rem;
+            color: #d7f112;
+        }
+
+        .modal-footer button {
+            background-color: #d7f112;
+            border-color: #d7f112;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #c0e000;
+            border-color: #c0e000;
+        }
+
+        .footer-nav {
+            background-color: #333;
+            border-top: 2px solid #444;
+        }
+
+        .footer-nav .nav-link {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .footer-nav .nav-link:hover {
+            color: #d7f112;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/mypics/lg.jpg" alt="Logo" width="30" height="30" class="me-2">
+                <span class="h2">cSpark</span>
+            </a>
+            <div class="d-flex ms-auto align-items-center">
+                <a class="btn btn-secondary me-2" type="button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Signup</a>
+                <a class="btn btn-secondary me-2" type="button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModallog">Login</a>
+                <a class="nav-link text-white" href="#service">Our Services</a>
+                <a class="nav-link text-white" href="#team">Our Team</a>
+                <a class="nav-link text-white" href="#reach">Reach Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/mypics/young-adults-cityscape-use-technology-daily-generated-by-ai.jpg"
+                    class="d-block w-100" alt="Sorry ! Not Available" height="550px">
+            </div>
+            <div class="carousel-item">
+                <img src="/mypics/render-smartphone-trend-social-media-platform-background.jpg"
+                    class="d-block w-100" alt="Sorry ! Not Available" height="550px">
+            </div>
+            <div class="carousel-item">
+                <img src="/mypics/3d-character-emerging-from-smartphone.jpg" class="d-block w-100"
+                    alt="Sorry ! Not Available" height="550px">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <section id="service" class="py-5">
+        <nav class="navbar bg-dark border-bottom border-body d-flex justify-content-center">
+            <div class="nav-link text-white">
+                <h5>Our Services</h5>
+            </div>
+        </nav>
+        <div class="container mt-4">
+            <div class="row g-4">
+                <!-- Service Cards -->
+                <!-- (Include service cards here, similar to existing code) -->
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-5">
+        <nav class="navbar bg-dark border-bottom border-body d-flex justify-content-center">
+            <div class="nav-link text-white">
+                <h5>Our Team</h5>
+            </div>
+        </nav>
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Team Cards -->
+                <!-- (Include team cards here, similar to existing code) -->
+            </div>
+        </div>
+    </section>
+
+    <section id="reach" class="py-5">
+        <nav class="navbar bg-dark border-bottom border-body d-flex justify-content-center">
+            <div class="nav-link text-white">
+                <h5>Reach Us</h5>
+            </div>
+        </nav>
+        <div class="container mt-4">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3447.9252404799245!2d-123.0989402844156!3d37.22906273914052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb7c85a7a0f0b%3A0x185865f52e34912b!2sSanta%20Clara%2C%20CA%2095005%2C%20USA!5e0!3m2!1sen!2sin!4v1655695530366!5m2!1sen!2sin"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Modal Sign Up -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="signupName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="signupName" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3 password-container">
+                            <label for="signupPassword" class="form-label">Password</label>
+                            <div class="position-relative">
+                                <input type="password" class="form-control" id="signupPassword"
+                                    placeholder="Your Password">
+                                <i class="bi bi-eye position-absolute end-0 top-50 translate-middle-y pe-2" id="togglePassword"></i>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="exampleModallog" tabindex="-1" aria-labelledby="exampleModallogLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModallogLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3 password-container">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <div class="position-relative">
+                                <input type="password" class="form-control" id="loginPassword"
+                                    placeholder="Your Password">
+                                <i class="bi bi-eye position-absolute end-0 top-50 translate-middle-y pe-2" id="togglePasswordLogin"></i>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-nav py-4">
+        <div class="container">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Privacy Policy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Terms of Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('signupPassword');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('bi-eye-slash');
+        });
+
+        document.getElementById('togglePasswordLogin').addEventListener('click', function () {
+            const passwordField = document.getElementById('loginPassword');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencer Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- jQuery link -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+              let username = localStorage.getItem("activeuser");
+              if (username) {
+                $("#username").text(`Welcome: ${username}`);
+              }
+            });
+          </script>
+          <script>
+            $(document).ready(function(){
+             // Password Change Functionality
+             $("#btnchngpwd").click(function () {
+                let email = $("#txtemailinfpass").val();
+                let oldPassword = $("#txtoldpass").val();
+                let newPassword = $("#txtnewpass").val();
+                let confirmPassword = $("#txtcnfnewpass").val();
+
+                if (newPassword !== confirmPassword) {
+                    alert("New password and confirm password don't match.");
+                    return;
+                }
+
+                if (!email || !oldPassword || !newPassword || !confirmPassword) {
+                    alert("Please fill out all fields.");
+                    return;
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/change-pwd',
+                    data: {
+                        email: email,
+                        oldpwd: oldPassword,
+                        newpwd: newPassword
+                    },
+                    success: function (response) {
+                        alert(response);
+                    },
+                    error: function (xhr, status, error) {
+                        alert("An error occurred: " + error);
+                    }
+                });
+            });
+        });
+          </script>
+    <style>
+        /* Override default btn-dark styling */
+.btn-dark {
+    background-color: #d7f112; /* Set background color */
+    border-color: #d7f112; /* Set border color */
+    color: #333; /* Set text color */
+}
+
+.btn-dark:hover {
+    background-color: #c0e000; /* Lighter shade on hover */
+    border-color: #c0e000; /* Lighter border on hover */
+    color: #333; /* Ensure text color remains the same */
+}
+
+.btn-dark:focus, .btn-dark.focus {
+    box-shadow: 0 0 0 0.2rem rgba(215, 241, 18, 0.5); /* Adjust focus shadow to match button color */
+}
+
+          body {
+            background: linear-gradient(to right, #DAABA5, #f5f5f5);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #333;
+            border-bottom: 2px solid #444;
+        }
+
+        .navbar-brand img {
+            border-radius: 50%;
+        }
+
+        .navbar-nav a {
+            color: #fff !important;
+            margin-left: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            color: #d7f112 !important;
+        }
+
+        .carousel-inner img {
+            border-radius: 15px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control,
+        .form-select {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        .form-control::placeholder,
+        .form-select {
+            color: #ccc;
+        }
+
+        .form-check-input {
+            background-color: #333;
+            border: 1px solid #444;
+        }
+
+        .form-check-label {
+            color: #fff;
+        }
+
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-container input {
+            padding-right: 3rem;
+            /* Adjust the padding to ensure there's enough space for the icon */
+            border-radius: 5px;
+            /* Ensure the input has rounded corners */
+        }
+
+        .password-container i {
+            position: absolute;
+            right: 0.75rem;
+            /* Adjust this value to position the icon inside the input */
+            color: #d7f112;
+            /* Icon color */
+            font-size: 1.2rem;
+            /* Adjust the icon size as needed */
+            cursor: pointer;
+            /* Change cursor to pointer to indicate it's clickable */
+        }
+
+        .modal-footer button {
+            background-color: #d7f112;
+            border-color: #d7f112;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #c0e000;
+            border-color: #c0e000;
+        }
+
+        .footer-nav {
+            background-color: #333;
+            border-top: 2px solid #444;
+        }
+
+        .footer-nav .nav-link {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .footer-nav .nav-link:hover {
+            color: #d7f112;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #000; /* Black background for card */
+            color: #fff;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            height: 250px; /* Fixed height for image */
+            object-fit: cover; /* Ensure image covers container while maintaining aspect ratio */
+            border-bottom: 3px solid #d7f112; /* Bottom border color */
+        }
+
+        .card-body {
+            background-color: #000; /* Black background for card body */
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .card-body a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid #d7f112;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card-body a:hover {
+            background-color: #d7f112;
+            color: #333;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            if (localStorage.getItem("activeuser") == null) {
+                location.href = "index.html";
+                return;
+            }
+        })
+    </script>
+    <script>
+        function doLogout() {
+            localStorage.removeItem("activeuser");
+            localStorage.setItem("loggedOut", true);
+            fetch('/logout', {
+                method: 'GET'
+            });
+            location.href = "logout-redirect.html";
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/mypics/lg.jpg" alt="Logo" width="30" height="30" class="me-2">
+                <span class="mb-0 h2">cSpark</span>
+            </a>
+            <div class="d-flex justify-content-center" style="width: 100%;">
+                <span id="username" class="text-white" style="font-weight: bold; font-size: 24px;"></span>
+              </div>
+        </div>
+        <div class="d-flex ms-auto align-items-center">
+            <a href="#" class="btn btn-secondary me-2" onclick="doLogout()"
+                style="margin-right:10px; margin-top:10px">Logout</a>
+        </div>
+    </nav>
+    <center>
+        <div class="container mt-4">
+            <h4 id="infl-dash">Influencer Dashboard</h4>
+            <br><br>
+            <div class="card" id="profile-card">
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <img src="/mypics/1834202.png" class="card-img-top" alt="Profile Image" height="250px">
+                            <div class="card-body">
+                                <a href="/infl-profile.html" class="btn btn-dark">Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <img src="/mypics/9156734.png" class="card-img-top" alt="Bookings Image" height="250px">
+                            <div class="card-body">
+                                <a href="#" class="btn btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#bookingModal">Bookings</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <img src="/mypics/th__7_-removebg-preview.png" class="card-img-top" alt="Event Image"
+                                height="250px">
+                            <div class="card-body">
+                                <a href="/event-manager.html" class="btn btn-dark">Event Manager</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <img src="/mypics/7089579.png" class="card-img-top" alt="Settings Image" height="250px">
+                            <div class="card-body">
+                                <a href="#" class="btn btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#modal-change-password">Change Password</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+    </center>
+    <script>
+        $(document).ready(function () {
+            let active = localStorage.getItem("activeuser");
+            $("#txtEmail").val(active).prop("readonly", true);
+            $("#booking").click(function () {
+                let obj = {
+                    type: "post",
+                    url: "/booking-event",
+                    data: {
+                        txtEmail: $("#txtEmail").val(),
+                        title: $('#title').val(),
+                        date: $('#date').val(),
+                        time: $('#time').val(),
+                        city: $('#city').val(),
+                        venue: $('#venue').val()
+                    }
+                }
+                $.ajax(obj).done(function (resp) {
+                    $("#msgbooking").html(resp);
+                }).fail(function (err) {
+                    alert(err.statusText);
+                })
+            });
+        });
+    </script>
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Bookings / Events</h5><span id="msgbooking"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="eventForm">
+                        <div class="form-group">
+                            <label for="email">Email ID</label>
+                            <input type="email" class="form-control" id="txtEmail" name="txtEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Event Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Start Time</label>
+                            <input type="time" class="form-control" id="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City/Place</label>
+                            <input type="text" class="form-control" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="venue">Venue</label>
+                            <input type="text" class="form-control" id="venue" name="venue" required>
+                        </div>
+                        <button type="button" class="btn btn-dark" id="booking">Post Event</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ <!-- Modal -->
+ <div class="modal fade" tabindex="-1" id="modal-change-password" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:#580968; font-size: x-large; font-weight: bold;">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <div class="col-md-12">
+                        <label for="txtemailinfpass" class="form-label labels">Email</label>
+                        <input type="email" class="form-control" id="txtemailinfpass">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="txtoldpass" class="form-label labels">Current Password</label>
+                        <input type="password" class="form-control" id="txtoldpass">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="txtnewpass" class="form-label labels">New Password</label>
+                        <input type="password" id="txtnewpass" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="txtcnfnewpass" class="form-label labels">Confirm Password</label>
+                        <input type="password" id="txtcnfnewpass" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" id="btnchngpwd">Change Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

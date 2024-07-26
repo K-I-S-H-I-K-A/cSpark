@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+              let username = localStorage.getItem("activeuser");
+              if (username) {
+                $("#username").text(`${username}`);
+              }
+            });
+          </script>
+    <script>
+        $(document).ready(function () {
+            $("#txtEmail").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#name").focus();
+                }
+            });
+            $("#name").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#fileCtrl").focus();
+                }
+            });
+            $("#fileCtrl").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#address").focus();
+                }
+            });
+            $("#address").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#number").focus();
+                }
+            });
+            $("#number").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#city").focus();
+                }
+            });
+            $("#city").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#state").focus();
+                }
+            });
+            $("#state").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#zip").focus();
+                }
+            });
+            $("#zip").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#gender").focus();
+                }
+            });
+            $("#gender").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#field").focus();
+                }
+            });
+            $("#field").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#youtube").focus();
+                }
+            });
+            $("#youtube").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#insta").focus();
+                }
+            });
+            $("#insta").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#facebook").focus();
+                }
+            });
+            $("#facebook").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#other").focus();
+                }
+            });
+            $("#other").keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    $("#check").focus();
+                }
+            });
+        });
+    </script>
+    <style>
+         body {
+            background: linear-gradient(to right, #DAABA5, #f5f5f5);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #333;
+            border-bottom: 2px solid #444;
+        }
+
+        .navbar-brand img {
+            border-radius: 50%;
+        }
+
+        .navbar-nav a {
+            color: #fff !important;
+            margin-left: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            color: #d7f112 !important;
+        }
+
+        .carousel-inner img {
+            border-radius: 15px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control,
+        .form-select {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        .form-control::placeholder,
+        .form-select {
+            color: #ccc;
+        }
+
+        .form-check-input {
+            background-color: #333;
+            border: 1px solid #444;
+        }
+
+        .form-check-label {
+            color: #fff;
+        }
+
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-container input {
+            padding-right: 3rem;
+            /* Adjust the padding to ensure there's enough space for the icon */
+            border-radius: 5px;
+            /* Ensure the input has rounded corners */
+        }
+
+        .password-container i {
+            position: absolute;
+            right: 0.75rem;
+            /* Adjust this value to position the icon inside the input */
+            color: #d7f112;
+            /* Icon color */
+            font-size: 1.2rem;
+            /* Adjust the icon size as needed */
+            cursor: pointer;
+            /* Change cursor to pointer to indicate it's clickable */
+        }
+
+        .modal-footer button {
+            background-color: #d7f112;
+            border-color: #d7f112;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #c0e000;
+            border-color: #c0e000;
+        }
+
+        .footer-nav {
+            background-color: #333;
+            border-top: 2px solid #444;
+        }
+
+        .footer-nav .nav-link {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .footer-nav .nav-link:hover {
+            color: #d7f112;
+        }
+
+    </style>
+    <script>
+        function doPrev(fileCtrl, imgPrev) {
+            let [file] = fileCtrl.files;
+            if (file) {
+                imgPrev.src = URL.createObjectURL(file);
+            }
+        }
+
+        $(document).ready(function () {
+            let userDataSaved = false; // Initialize variable to false
+
+            let active = localStorage.getItem("activeuser");
+            $("#txtEmail").val(active).prop("readonly", true);
+
+            $("#iprofile").click(function () {
+                let obj = {
+                    type: "get",
+                    url: "/infl-profile",
+                    data: {
+                        txtEmail: $("#txtEmail").val(),
+                        name: $("#name").val(),
+                        fileCtrl: $("#fileCtrl").val(),
+                        address: $("#address").val(),
+                        number: $("#number").val(),
+                        city: $("#city").val(),
+                        state: $("#state").val(),
+                        zip: $("#zip").val(),
+                        gender: $("#gender").val(),
+                        field: $("#field").val(icategory.split(",")),
+                        youtube: $("#youtube").val(),
+                        insta: $("#insta").val(),
+                        facebook: $("#facebook").val(),
+                        other: $("#other").val()
+                    }
+                };
+                $.ajax(obj).done(function (resp) {
+                    $("#msgProfile").html(resp);
+                }).fail(function (err) {
+                    alert(err.statusText);
+                });
+            });
+
+            $("#btnSearch").click(function () {
+                let obj = {
+                    type: "get",
+                    url: "/find-user-details",
+                    data: { txtEmail: $("#txtEmail").val() }
+                };
+                $.ajax(obj).done(function (jsonAry) {
+                    if (jsonAry.length == 0) {
+                        // User data not found, hide the search button
+                        $("#btnSearch").prop("type", "hidden");
+                         // User data not found, enable Save button and disable Update button
+                         userDataSaved = false;
+                        $("#saveBtn").prop("disabled", false);
+                        $("#updateBtn").prop("disabled", true);
+                    } else {
+                         // User data found, disable Save button and enable Update button
+                         userDataSaved = true;
+                        $("#saveBtn").prop("disabled", true);
+                        $("#updateBtn").prop("disabled", false);
+                        // User data found, populate the form fields
+                        $("#name").val(jsonAry[0].name);
+                        $("#imgprev").prop("src", "myuploads/" + jsonAry[0].ppic);
+                        $("#address").val(jsonAry[0].address);
+                        $("#number").val(jsonAry[0].number);
+                        $("#city").val(jsonAry[0].city);
+                        $("#state").val(jsonAry[0].state);
+                        $("#zip").val(jsonAry[0].zip);
+                        $("#gender").val(jsonAry[0].gender);
+                        $("#field").val(jsonAry[0].field);
+                        $("#youtube").val(jsonAry[0].youtube);
+                        $("#insta").val(jsonAry[0].insta);
+                        $("#facebook").val(jsonAry[0].facebook);
+                        $("#other").val(jsonAry[0].other);
+                        $("#hdn").val(jsonAry[0].ppic);
+                    }
+                }).fail(function (err) {
+                    alert(err.statusText);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body mb-3" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/mypics/lg.jpg" alt="Logo" width="30" height="30" class="me-2">
+                <span class="mb-0 h2">cSpark</span>
+            </a>
+            <div class="d-flex justify-content-center" style="width: 100%;">
+                <span id="username" class="text-white" style="font-weight: bold; font-size: 24px;"></span>
+              </div>
+        </div>
+    </nav>
+    <div class="container">
+        <form class="row g-3" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="hdn" id="hdn">
+            <div class="col-12 text-center">
+                <h2>Influencer Details :-)</h2>
+                <span id="msgProfile"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Email</label>
+                <input type="email" class="form-control" name="txtEmail" id="txtEmail" placeholder="example@gmail.com"
+                    required>
+                <div class="invalid-feedback">
+                    Please provide a valid email.
+                </div>
+                <input type="button" value="Search" id="btnSearch" class="btn btn-dark">
+                <br> <span id="errEmail"></span>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom01" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+                <div class="invalid-feedback">
+                    Please provide a valid name.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="fileCtrl" class="form-label">Profile Pic</label>
+                <input type="file" name="ppic" id="fileCtrl" class="form-control" onchange="doPrev(this, imgprev);">
+                <br>
+                <img src="" id="imgprev" alt="" width="100" height="100">
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required>
+                <div class="invalid-feedback">
+                    Please provide a valid address.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="number" name="number" placeholder="123456789" required>
+                <div class="invalid-feedback">
+                    Please provide a valid contact number.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom04" class="form-label">State</label>
+                <select id="state" name="state" class="form-select" required>
+                    <option selected>Choose...</option>
+                    <option>Andhra Pradesh</option>
+                    <option>Arunachal Pradesh</option>
+                    <option>Assam</option>
+                    <option>Bihar</option>
+                    <option>Chhattisgarh</option>
+                    <option>Goa</option>
+                    <option>Gujarat</option>
+                    <option>Haryana</option>
+                    <option>Himachal Pradesh</option>
+                    <option>Jharkhand</option>
+                    <option>Karnataka</option>
+                    <option>Kerala</option>
+                    <option>Madhya Pradesh</option>
+                    <option>Maharashtra</option>
+                    <option>Manipur</option>
+                    <option>Meghalaya</option>
+                    <option>Mizoram</option>
+                    <option>Nagaland</option>
+                    <option>Odisha</option>
+                    <option>Punjab</option>
+                    <option>Rajasthan</option>
+                    <option>Sikkim</option>
+                    <option>Tamil Nadu</option>
+                    <option>Telangana</option>
+                    <option>Tripura</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Uttarakhand</option>
+                    <option>West Bengal</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid state.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" name="zip" required>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom04" class="form-label">Gender</label>
+                <select id="gender" name="gender" class="form-select" required>
+                    <option selected>Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid gender.
+                </div>
+            </div>
+            <div class="col-md-7">
+                <label for="validationCustom04" class="form-label">Fields</label>
+                <select id="field" name="field" class="form-select" multiple required>
+                    <option selected>Choose...</option>
+                    <option>Beauty</option>
+                    <option>Fashion</option>
+                    <option>Fitness</option>
+                    <option>Gaming</option>
+                    <option>Technology</option>
+                    <option>Travel</option>
+                    <option>Food</option>
+                    <option>Music</option>
+                    <option>Art</option>
+                    <option>Photography</option>
+                    <option>Other</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid field.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">YouTube Channel</label>
+                <input type="text" class="form-control" id="youtube" name="youtube" placeholder="username" required>
+                <div class="invalid-feedback">
+                    Please provide a valid youtube channel.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Instagram ID</label>
+                <input type="text" class="form-control" id="insta" name="insta" placeholder="username" required>
+                <div class="invalid-feedback">
+                    Please provide a valid username.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Facebook ID</label>
+                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="username" required>
+                <div class="invalid-feedback">
+                    Please provide a valid username.
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="other" class="form-label">Other Info</label>
+                <input type="text" class="form-control" id="other" name="other">
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check" name="check" required>
+                    <label class="form-check-label" for="validationCustom01">
+                        I assure the given details are correct.
+                    </label>
+                    <div class="invalid-feedback">
+                        Please check the box.
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-dark" formaction="/infl-profile">Save</button>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-dark" formaction="/infl-update">Update</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
